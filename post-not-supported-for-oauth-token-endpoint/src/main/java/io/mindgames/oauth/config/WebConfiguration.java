@@ -16,12 +16,6 @@ import static org.apache.commons.lang3.StringUtils.isNotEmpty;
 @EnableWebMvc
 public class WebConfiguration implements WebMvcConfigurer {
 
-    /*private final String corsAllowedOrigins;
-
-    public WebConfiguration(@Value("${cors.allowed.origins}") String corsAllowedOrigins) {
-        this.corsAllowedOrigins = corsAllowedOrigins;
-    }*/
-
     @Override
     public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
         configurer.defaultContentType(MediaType.APPLICATION_JSON_UTF8);
@@ -35,14 +29,4 @@ public class WebConfiguration implements WebMvcConfigurer {
         return new MethodValidationPostProcessor();
     }
 
-    /*@Override
-    public void addCorsMappings(CorsRegistry registry) {
-        String[] origins = {"*"};
-        if (isNotEmpty(corsAllowedOrigins)) {
-            origins = corsAllowedOrigins.split(",");
-        }
-        registry.addMapping("/**")
-                .allowedOrigins(origins)
-                .allowedMethods("*");
-    }*/
 }
