@@ -25,3 +25,4 @@ curl -H "Authorization: Bearer 81463f1d-a944-4787-a963-511aae55298f" http://loca
 ````
 curl -H "Authorization: Bearer 81463f1d-a944-4787-a963-511aae55298f" http://localhost:2222/api/getclients
 ````
+for spring-boot-1.5.2 version please check branch question-52046510-boot-1-5 https://github.com/alex-petrov81/stackoverflow-answers/tree/question-52046510-boot-1-5
