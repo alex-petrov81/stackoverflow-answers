@@ -1,0 +1,130 @@
+buildscript {
+    ext {
+        springBootVersion = '2.0.0.RELEASE'
+    }
+    repositories {
+        mavenCentral()
+        maven {
+            url 'https://repo.spring.io/libs-snapshot'
+        }
+        maven {
+            url 'https://repo.spring.io/release'
+        }
+        maven {
+            url "https://plugins.gradle.org/m2/"
+        }
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+        classpath("javax.xml.bind:jaxb-api:2.3.0")
+        classpath("com.sun.xml.bind:jaxb-core:2.3.0")
+        classpath "gradle.plugin.org.hidetake:gradle-swagger-generator-plugin:2.9.0"
+        classpath "net.ltgt.gradle:gradle-apt-plugin:0.13"
+    }
+}
+
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+apply plugin: "org.hidetake.swagger.generator"
+apply plugin: "net.ltgt.apt"
+
+
+group = 'io.mind-games'
+version = '1.0.0'
+description = """Enum validator example"""
+sourceCompatibility = 1.9
+
+ext {
+    springCloudVersion="Finchley.M9"
+    springSecurityWeb="5.0.1.RELEASE"
+    springSecurityJwt="1.0.9.RELEASE"
+    springSecurityOauth2="2.3.2.RELEASE"
+    hibernateVersion = "5.2.13.Final"
+    logbackClassicVersion = "1.1.8"
+    postgresqlVersion = "42.2.1"
+    postgresSocketFactory = "1.0.5"
+    swaggerVersion = "2.8.0"
+    swaggerCodegenVersion = "2.3.1"
+    lombokVersion = "1.16.20"
+    mapstructVersion = "1.2.0.Final"
+    guavaVersion = "23.0"
+    jaxbVersion = "2.3.0"
+    h2Version = "1.4.196"
+    commonsLangVersion="3.0"
+    validationAPIVersion="2.0.1.Final"
+    hibernateValidatorVersion="6.0.9.Final"
+}
+
+tasks.withType(JavaCompile) {
+	options.encoding = 'UTF-8'
+}
+
+
+
+repositories {
+    maven {
+        url 'https://repo.spring.io/libs-snapshot'
+    }
+}
+
+dependencyManagement {
+    imports {
+        mavenBom "org.springframework.cloud:spring-cloud-dependencies:${springCloudVersion}"
+    }
+}
+
+dependencies {
+    compile ("org.springframework.cloud:spring-cloud-starter")
+    compile ("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-data-jpa:${springBootVersion}")
+    compile("org.springframework.security:spring-security-web:${springSecurityWeb}")
+
+    compile("org.springframework.security:spring-security-jwt:${springSecurityJwt}")
+
+    /*compile("org.springframework.security.enumvalidator:spring-security-oauth2:${springSecurityOauth2}")*/
+
+    compile("com.h2database:h2:${h2Version}")
+
+    compile("org.hibernate:hibernate-core:${hibernateVersion}")
+    compile("org.hibernate:hibernate-entitymanager:${hibernateVersion}")
+    compile("org.hibernate:hibernate-java8:${hibernateVersion}")
+    compile("org.hibernate:hibernate-envers:${hibernateVersion}")
+
+    compile "javax.validation:validation-api:${validationAPIVersion}"
+    compile "org.hibernate.validator:hibernate-validator:${hibernateValidatorVersion}"
+
+
+    compile("ch.qos.logback:logback-classic:${logbackClassicVersion}")
+    compile("ch.qos.logback:logback-core:${logbackClassicVersion}")
+
+    runtime("org.postgresql:postgresql:${postgresqlVersion}")
+    compile("com.google.cloud.sql:postgres-socket-factory:${postgresSocketFactory}")
+    
+
+    compile("io.springfox:springfox-swagger2:${swaggerVersion}")
+    compile("io.springfox:springfox-swagger-ui:${swaggerVersion}")
+    compile("io.swagger:swagger-codegen-cli:${swaggerCodegenVersion}")
+    swaggerCodegen("io.swagger:swagger-codegen-cli:${swaggerCodegenVersion}")
+
+    compileOnly("org.projectlombok:lombok:${lombokVersion}")
+    apt("org.projectlombok:lombok:${lombokVersion}")
+
+    compile("org.mapstruct:mapstruct-jdk8:${mapstructVersion}")
+    compile("org.mapstruct:mapstruct-processor:${mapstructVersion}")
+    apt "org.mapstruct:mapstruct-processor:${mapstructVersion}"
+
+    compile("com.google.guava:guava:${guavaVersion}")
+    compile("javax.xml.bind:jaxb-api:${jaxbVersion}")
+
+    compile group: 'com.google.code.gson', name: 'gson', version: '2.8.2'
+    compile("com.fasterxml.jackson.datatype:jackson-datatype-jsr310")
+    compile ("org.apache.commons:commons-lang3:${commonsLangVersion}")
+
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+    testCompile("com.h2database:h2:${h2Version}")
+
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+
+}
+
