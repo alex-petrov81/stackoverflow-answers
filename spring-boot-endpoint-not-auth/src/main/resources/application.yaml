@@ -1,0 +1,16 @@
+# Spring properties
+spring:
+  application:
+     name: oauth-service
+
+
+
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      WRITE_DATES_AS_TIMESTAMPS: false
+
+# HTTP Server
+server:
+  port: 2222   # HTTP (Tomcat) port
+

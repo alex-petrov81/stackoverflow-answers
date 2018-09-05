@@ -1,0 +1,40 @@
+version '1.0'
+
+buildscript{
+    ext{
+        spring_boot_version = '1.5.2.RELEASE'
+    }
+    repositories{
+        mavenCentral()
+    }
+    dependencies{
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:$spring_boot_version")
+    }
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '3.3'
+    distributionUrl = "https://services.gradle.org/distributions/gradle-$gradleVersion-all.zip"
+}
+
+apply plugin: 'java'
+//apply plugin: 'war'
+
+sourceCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-rest', version: '1.5.4.RELEASE'
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-data-jpa
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '1.5.6.RELEASE'
+// https://mvnrepository.com/artifact/com.h2database/h2
+    compile group: 'com.h2database', name: 'h2', version: '1.4.187'
+    // https://mvnrepository.com/artifact/org.springframework.security.oauth/spring-security-oauth2
+    compile group: 'org.springframework.cloud', name: 'spring-cloud-starter-oauth2', version: '1.2.1.RELEASE'
+
+    compileOnly("org.projectlombok:lombok:1.16.20")
+}
