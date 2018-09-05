@@ -19,9 +19,5 @@ You've got  the response  like this
 2. Get access_token value from step 1 and send the following request by using Curl
 
 ````
-curl -H "Authorization: Bearer 81463f1d-a944-4787-a963-511aae55298f" http://localhost:2222/api/getusers
-````
-
-````
-curl -H "Authorization: Bearer 81463f1d-a944-4787-a963-511aae55298f" http://localhost:2222/api/getclients
+curl -H "Authorization: Bearer 81463f1d-a944-4787-a963-511aae55298f" http://localhost:2222/users
 ````
