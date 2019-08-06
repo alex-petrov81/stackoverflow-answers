@@ -1,0 +1,3 @@
+rootProject.name = 'stackoverflow-answers-root' 
+include ':auth-server-also-resource', ':bad-request-show-200', ':disable-http-methods', ":do-not-ignore-unrecognized-json-fields", ":enum-validator", ":full-authentication-is-required-to-access-this-resource", ":post-not-supported-for-oauth-token-endpoint", ":spring-boot-endpoint-not-auth", ":validation-bean-injection"
+
